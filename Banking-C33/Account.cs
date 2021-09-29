@@ -14,18 +14,29 @@ namespace Banking_C33
 
 		public bool Deposit(decimal amount)
 		{
+			if(amount <= 0)
+			{
+				Console.WriteLine("Invalid amount!");
+				return false;
+			}
 			this.Balance = this.Balance + amount;
 			return true;
 		}
 		public bool Withdraw(decimal amount)
 		{
-			if(amount > this.Balance)
+			if(amount > 0)
 			{
-				Console.WriteLine("Insufficient funds!");
-				return false;
+				if(amount > this.Balance)
+				{
+					Console.WriteLine("Insufficient funds!");
+					return false;
+				}
+				this.Balance = this.Balance - amount;
+				return true;
 			}
-			this.Balance = this.Balance - amount;
-			return true;
+			else
+				Console.WriteLine("No negative or zero numbers!");
+			return false;
 		}
 		public bool Transfer(decimal amount, Account ToAccount)
 		{
