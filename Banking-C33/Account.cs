@@ -29,7 +29,7 @@ namespace Banking_C33
 			}
 			if (amount > this.Balance)
 			{
-				throw new InsufficientFundsException();
+				throw new InsufficientFundsException(this.Balance, amount);
 			}
 			Balance = this.Balance - amount;
 			return true;

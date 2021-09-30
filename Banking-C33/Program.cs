@@ -24,6 +24,8 @@ namespace Banking_C33
 			} catch( InsufficientFundsException ex)
 			{
 				Console.WriteLine("You don't have enough in your account!");
+				Console.WriteLine($"Current balance is {ex.CurrentBalance}");
+				Console.WriteLine($"Amount to withdraw is {ex.AmountToWithdraw}");
 			} catch( Exception ex)
 			{
 				Console.WriteLine("Call your programmer at 2am on Saturday");
