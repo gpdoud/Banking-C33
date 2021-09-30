@@ -10,11 +10,24 @@ namespace Banking_C33
 			sav2.Description = "Greg's Savings2";
 			sav2.InterestRate = 0.12m;
 			sav2.Print();
-			sav2.Deposit(5000);
-			sav2.Withdraw(2000);
-			sav2.CalculateAndPayInterest(1);
-			sav2.Print();
+			try
+			{
+				sav2.Deposit(5000);
+				sav2.Withdraw(2000);
+				sav2.CalculateAndPayInterest(1);
+				sav2.Print();
 
+				sav2.Withdraw(10000);
+			} catch (AmountGreaterThanZeroException)
+			{
+				Console.WriteLine("Amount cannot be zero or negative");
+			} catch( InsufficientFundsException ex)
+			{
+				Console.WriteLine("You don't have enough in your account!");
+			} catch( Exception ex)
+			{
+				Console.WriteLine("Call your programmer at 2am on Saturday");
+			}
 
 
 			//var sav1 = new Savings()

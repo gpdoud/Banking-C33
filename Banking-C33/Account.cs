@@ -16,34 +16,31 @@ namespace Banking_C33
 		{
 			if(amount <= 0)
 			{
-				Console.WriteLine("Invalid amount!");
-				return false;
+				throw new AmountGreaterThanZeroException();
 			}
 			this.Balance = this.Balance + amount;
 			return true;
 		}
 		public bool Withdraw(decimal amount)
 		{
-			if(amount > 0)
+			if (amount <= 0)
 			{
-				if(amount > this.Balance)
-				{
-					Console.WriteLine("Insufficient funds!");
-					return false;
-				}
-				this.Balance = this.Balance - amount;
-				return true;
+				throw new AmountGreaterThanZeroException();
 			}
-			else
-				Console.WriteLine("No negative or zero numbers!");
-			return false;
+			if (amount > this.Balance)
+			{
+				throw new InsufficientFundsException();
+			}
+			Balance = this.Balance - amount;
+			return true;
 		}
 		public bool Transfer(decimal amount, Account ToAccount)
 		{
-			var success = Withdraw(amount);
-			if(success == true)
+			var success = this.Withdraw(amount);
+			if(success)
 			{
 				ToAccount.Deposit(amount);
+
 			}
 			return true;
 		}
